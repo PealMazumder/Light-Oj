@@ -5,15 +5,15 @@
 using namespace std;
 int main()
 {
-    stack <string> stk1;
-    stack <string> stk2;
+    stack <string> backward_stk;
+    stack <string> forward_stk;
     string current,input,url;
 
     int test,i;
     cin>>test;
     for(i=1;i<=test;i++)
     {
-        stk1.push("http://www.lightoj.com/");
+        backward_stk.push("http://www.lightoj.com/");
         cout<<"Case "<<i<<":"<<endl;
         while(1)
         {
@@ -25,28 +25,28 @@ int main()
             else if(input=="VISIT")
             {
                 cin>>url;
-                stk1.push(url);
+                backward_stk.push(url);
                 cout<<url<<endl;
-                while(!stk2.empty())
-                    stk2.pop();
+                while(!forward_stk.empty())
+                    forward_stk.pop();
             }
             else if(input=="BACK")
             {
-                if(!stk1.empty())
+                if(!backward_stk.empty())
                 {
-                    current = stk1.top();
+                    current = backward_stk.top();
 
-                    stk1.pop();
-                    if(!stk1.empty())
+                    backward_stk.pop();
+                    if(!backward_stk.empty())
                     {
-                        stk2.push(current);
-                        current=stk1.top();
+                        forward_stk.push(current);
+                        current=backward_stk.top();
                         cout<<current<<endl;
                     }
 
                     else
                     {
-                        stk1.push(current);
+                        backward_stk.push(current);
                         cout<<"Ignored"<<endl;
                     }
 
@@ -54,21 +54,21 @@ int main()
             }
             else if(input=="FORWARD")
             {
-                if(!stk2.empty())
+                if(!forward_stk.empty())
                 {
-                    current=stk2.top();
-                    stk2.pop();
-                    stk1.push(current);
+                    current=forward_stk.top();
+                    forward_stk.pop();
+                    backward_stk.push(current);
                     cout<<current<<endl;
                 }
                 else
                     cout<<"Ignored"<<endl;
             }
         }
-        while(!stk2.empty())
-            stk2.pop();
-        while(!stk1.empty())
-            stk1.pop();
+        while(!forward_stk.empty())
+            forward_stk.pop();
+        while(!backward_stk.empty())
+            backward_stk.pop();
     }
     return 0;
 }
