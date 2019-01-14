@@ -36,9 +36,11 @@ int main()
     
     cin>>t;
     while( t-- ) {
+	    
         cin>>a>>b>>c>>d>>e>>f>>n;
         res = fn(n);
         cout<<"Case "<<++caseno<<": "<<res% 10000007<<nl;
+	    
     }
     return 0;
 }
