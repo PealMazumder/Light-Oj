@@ -1,3 +1,6 @@
+/*
+	Relevent blog: http://www.shafaetsplanet.com/?p=1557
+*/
 #include<bits/stdc++.h>
 #define ll 						long long
 #define nl 						"\n"
